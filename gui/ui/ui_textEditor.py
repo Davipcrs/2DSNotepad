@@ -17,8 +17,8 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QMainWindow, QMenu,
-    QMenuBar, QPlainTextEdit, QPushButton, QSizePolicy,
-    QStatusBar, QVBoxLayout, QWidget)
+    QMenuBar, QPlainTextEdit, QSizePolicy, QStatusBar,
+    QVBoxLayout, QWidget)
 
 class Ui_TextEditor(object):
     def setupUi(self, TextEditor):
@@ -31,6 +31,14 @@ class Ui_TextEditor(object):
         self.actionSaveAs.setObjectName(u"actionSaveAs")
         self.actionNew = QAction(TextEditor)
         self.actionNew.setObjectName(u"actionNew")
+        self.actionClose = QAction(TextEditor)
+        self.actionClose.setObjectName(u"actionClose")
+        self.actionReturn = QAction(TextEditor)
+        self.actionReturn.setObjectName(u"actionReturn")
+        self.actionRFoward = QAction(TextEditor)
+        self.actionRFoward.setObjectName(u"actionRFoward")
+        self.actionClear = QAction(TextEditor)
+        self.actionClear.setObjectName(u"actionClear")
         self.centralwidget = QWidget(TextEditor)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_2 = QVBoxLayout(self.centralwidget)
@@ -45,28 +53,6 @@ class Ui_TextEditor(object):
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
-        sizePolicy = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy)
-        self.pushButton.setMinimumSize(QSize(250, 60))
-
-        self.horizontalLayout.addWidget(self.pushButton)
-
-        self.pushButton_2 = QPushButton(self.centralwidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        sizePolicy1 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy1)
-        self.pushButton_2.setMinimumSize(QSize(250, 60))
-
-        self.horizontalLayout.addWidget(self.pushButton_2)
-
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
@@ -89,12 +75,17 @@ class Ui_TextEditor(object):
         TextEditor.setStatusBar(self.statusbar)
 
         self.menubar.addAction(self.menuFile.menuAction())
-        self.menubar.addAction(self.menuSettings.menuAction())
         self.menubar.addAction(self.menuEdit.menuAction())
+        self.menubar.addAction(self.menuSettings.menuAction())
         self.menuFile.addAction(self.actionSave)
         self.menuFile.addAction(self.actionSaveAs)
         self.menuFile.addAction(self.actionNew)
         self.menuFile.addSeparator()
+        self.menuFile.addAction(self.actionClose)
+        self.menuEdit.addAction(self.actionReturn)
+        self.menuEdit.addAction(self.actionRFoward)
+        self.menuEdit.addSeparator()
+        self.menuEdit.addAction(self.actionClear)
 
         self.retranslateUi(TextEditor)
 
@@ -115,8 +106,19 @@ class Ui_TextEditor(object):
 #if QT_CONFIG(shortcut)
         self.actionNew.setShortcut(QCoreApplication.translate("TextEditor", u"Ctrl+N", None))
 #endif // QT_CONFIG(shortcut)
-        self.pushButton.setText(QCoreApplication.translate("TextEditor", u"PushButton", None))
-        self.pushButton_2.setText(QCoreApplication.translate("TextEditor", u"PushButton", None))
+        self.actionClose.setText(QCoreApplication.translate("TextEditor", u"Fechar", None))
+        self.actionReturn.setText(QCoreApplication.translate("TextEditor", u"Voltar", None))
+#if QT_CONFIG(shortcut)
+        self.actionReturn.setShortcut(QCoreApplication.translate("TextEditor", u"Ctrl+Z", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionRFoward.setText(QCoreApplication.translate("TextEditor", u"Ir para frente", None))
+#if QT_CONFIG(shortcut)
+        self.actionRFoward.setShortcut(QCoreApplication.translate("TextEditor", u"Ctrl+Shift+Z", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionClear.setText(QCoreApplication.translate("TextEditor", u"Limpar", None))
+#if QT_CONFIG(shortcut)
+        self.actionClear.setShortcut(QCoreApplication.translate("TextEditor", u"Ctrl+Alt+Backspace", None))
+#endif // QT_CONFIG(shortcut)
         self.menuFile.setTitle(QCoreApplication.translate("TextEditor", u"File", None))
         self.menuSettings.setTitle(QCoreApplication.translate("TextEditor", u"Settings", None))
         self.menuEdit.setTitle(QCoreApplication.translate("TextEditor", u"Edit", None))

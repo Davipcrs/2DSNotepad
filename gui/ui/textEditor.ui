@@ -24,46 +24,7 @@
        <widget class="QPlainTextEdit" name="mainEditor"/>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QPushButton" name="pushButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>250</width>
-            <height>60</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>250</width>
-            <height>60</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <layout class="QHBoxLayout" name="horizontalLayout"/>
       </item>
      </layout>
     </item>
@@ -86,6 +47,7 @@
     <addaction name="actionSaveAs"/>
     <addaction name="actionNew"/>
     <addaction name="separator"/>
+    <addaction name="actionClose"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
@@ -96,10 +58,14 @@
     <property name="title">
      <string>Edit</string>
     </property>
+    <addaction name="actionReturn"/>
+    <addaction name="actionRFoward"/>
+    <addaction name="separator"/>
+    <addaction name="actionClear"/>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuSettings"/>
    <addaction name="menuEdit"/>
+   <addaction name="menuSettings"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSave">
@@ -124,6 +90,35 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Fechar</string>
+   </property>
+  </action>
+  <action name="actionReturn">
+   <property name="text">
+    <string>Voltar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRFoward">
+   <property name="text">
+    <string>Ir para frente</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Z</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="text">
+    <string>Limpar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+Backspace</string>
    </property>
   </action>
  </widget>
