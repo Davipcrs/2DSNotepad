@@ -1,0 +1,30 @@
+QPlainTextEdit#plainTextEdit{
+    background-color: rgb(44, 46, 60);
+    color: rgb(248, 248, 242);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 6px;
+    
+}
+QMainWindow{
+    background-color: rgb(40, 42, 54);
+}
+QPushButton{
+    background-color: rgb(44, 46, 60);
+    color: rgb(248, 248, 242);
+    border-style: solid;
+    border-color: rgb(40, 42, 54);
+    border-width: 2px;
+    border-radius: 6px;
+}
+QMenuBar{
+    background-color: rgb(40, 42, 54);
+    spacing: 6px;
+}
+QMenuBar::item{
+    background-color: rgb(44, 46, 60);
+    color: rgb(248, 248, 242);
+    border-radius: 6px;
+
+}
+
