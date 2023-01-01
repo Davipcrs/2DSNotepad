@@ -1,4 +1,4 @@
-QPlainTextEdit#plainTextEdit{
+QPlainTextEdit#mainEditor{
     background-color: rgb(44, 46, 60);
     color: rgb(248, 248, 242);
     border-style: solid;

@@ -20,21 +20,28 @@ from PySide6.QtWidgets import (QApplication, QHBoxLayout, QMainWindow, QMenu,
     QMenuBar, QPlainTextEdit, QPushButton, QSizePolicy,
     QStatusBar, QVBoxLayout, QWidget)
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        if not MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(944, 803)
-        self.centralwidget = QWidget(MainWindow)
+class Ui_TextEditor(object):
+    def setupUi(self, TextEditor):
+        if not TextEditor.objectName():
+            TextEditor.setObjectName(u"TextEditor")
+        TextEditor.resize(1024, 832)
+        self.actionSave = QAction(TextEditor)
+        self.actionSave.setObjectName(u"actionSave")
+        self.actionSaveAs = QAction(TextEditor)
+        self.actionSaveAs.setObjectName(u"actionSaveAs")
+        self.actionNew = QAction(TextEditor)
+        self.actionNew.setObjectName(u"actionNew")
+        self.centralwidget = QWidget(TextEditor)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_2 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout = QVBoxLayout()
+        self.verticalLayout.setSpacing(6)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.plainTextEdit = QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit.setObjectName(u"plainTextEdit")
+        self.mainEditor = QPlainTextEdit(self.centralwidget)
+        self.mainEditor.setObjectName(u"mainEditor")
 
-        self.verticalLayout.addWidget(self.plainTextEdit)
+        self.verticalLayout.addWidget(self.mainEditor)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -66,36 +73,52 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addLayout(self.verticalLayout)
 
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QMenuBar(MainWindow)
+        TextEditor.setCentralWidget(self.centralwidget)
+        self.menubar = QMenuBar(TextEditor)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 944, 21))
+        self.menubar.setGeometry(QRect(0, 0, 1024, 21))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuSettings = QMenu(self.menubar)
         self.menuSettings.setObjectName(u"menuSettings")
         self.menuEdit = QMenu(self.menubar)
         self.menuEdit.setObjectName(u"menuEdit")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QStatusBar(MainWindow)
+        TextEditor.setMenuBar(self.menubar)
+        self.statusbar = QStatusBar(TextEditor)
         self.statusbar.setObjectName(u"statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        TextEditor.setStatusBar(self.statusbar)
 
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuSettings.menuAction())
         self.menubar.addAction(self.menuEdit.menuAction())
+        self.menuFile.addAction(self.actionSave)
+        self.menuFile.addAction(self.actionSaveAs)
+        self.menuFile.addAction(self.actionNew)
+        self.menuFile.addSeparator()
 
-        self.retranslateUi(MainWindow)
+        self.retranslateUi(TextEditor)
 
-        QMetaObject.connectSlotsByName(MainWindow)
+        QMetaObject.connectSlotsByName(TextEditor)
     # setupUi
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
-        self.menuSettings.setTitle(QCoreApplication.translate("MainWindow", u"Settings", None))
-        self.menuEdit.setTitle(QCoreApplication.translate("MainWindow", u"Edit", None))
+    def retranslateUi(self, TextEditor):
+        TextEditor.setWindowTitle(QCoreApplication.translate("TextEditor", u"Editor de Texto", None))
+        self.actionSave.setText(QCoreApplication.translate("TextEditor", u"Salvar", None))
+#if QT_CONFIG(shortcut)
+        self.actionSave.setShortcut(QCoreApplication.translate("TextEditor", u"Ctrl+S", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionSaveAs.setText(QCoreApplication.translate("TextEditor", u"Salvar Como", None))
+#if QT_CONFIG(shortcut)
+        self.actionSaveAs.setShortcut(QCoreApplication.translate("TextEditor", u"Ctrl+Shift+S", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionNew.setText(QCoreApplication.translate("TextEditor", u"Novo", None))
+#if QT_CONFIG(shortcut)
+        self.actionNew.setShortcut(QCoreApplication.translate("TextEditor", u"Ctrl+N", None))
+#endif // QT_CONFIG(shortcut)
+        self.pushButton.setText(QCoreApplication.translate("TextEditor", u"PushButton", None))
+        self.pushButton_2.setText(QCoreApplication.translate("TextEditor", u"PushButton", None))
+        self.menuFile.setTitle(QCoreApplication.translate("TextEditor", u"File", None))
+        self.menuSettings.setTitle(QCoreApplication.translate("TextEditor", u"Settings", None))
+        self.menuEdit.setTitle(QCoreApplication.translate("TextEditor", u"Edit", None))
     # retranslateUi
 
