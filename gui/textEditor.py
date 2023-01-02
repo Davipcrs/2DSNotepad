@@ -11,7 +11,7 @@ class TextEditor(QMainWindow):
         self.ui = Ui_TextEditor()
         self.ui.setupUi(self)
 
-        self.ui.actionSave.clicked.connect()
+        self.ui.actionSave.triggered.connect(self.getTextFromEditor)
 
     def getTextFromEditor(self):
         self.str = self.ui.mainEditor.toPlainText()
