@@ -13,7 +13,7 @@ class MainWindow(QMainWindow):
         self.ui.pushButton.clicked.connect(self.changeWindow)
 
     def changeWindow(self):
-        self.txt = TextEditor()
+        self.txt = TextEditor("Teste.txt")
         self.txt.show()
 
 
