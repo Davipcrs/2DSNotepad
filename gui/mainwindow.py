@@ -11,18 +11,21 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.pushButton.clicked.connect(self.changeWindow)
+        self.ui.pushButton_2.clicked.connect(self.changeWindowWithLoad)
         self.ui.pushButton.setText("Novo arquivo")
         self.ui.pushButton_2.setText("Carregar arquivo")
         self.model = QStandardItemModel()
         self.ui.listView.setModel(self.model)
+        self.filename = None
 
-
-        
+        self.selectionList = self.ui.listView.selectionModel()
+        self.selectionList.selectionChanged.connect(self.getFileNameWithClick)
         self.listviewAddElement()
 
     def changeWindow(self):
         self.txt = TextEditor(None)
         self.txt.show()
+    
 
 
     ##Add text to List.
@@ -34,9 +37,22 @@ class MainWindow(QMainWindow):
 
         except:
             with open('/home/davi-coelho/Documentos/Repos/2DpsNotes'+"/"+'scontrol.2dps', 'a', encoding='utf-8') as f:
-                f.write(None)
+                f.write('')
+                l_str = None
 
+        if l_str != None:
+            for i in l_str:
+                self.item = QStandardItem(i)
+                self.model.appendRow(self.item)
+        else:
+            pass
 
-        for i in l_str:
-            self.item = QStandardItem(i)
-            self.model.appendRow(self.item)
+    def getFileNameWithClick(self):
+        aux_str = self.selectionList.selection().indexes()[0]
+        self.filename = aux_str.data()
+        
+
+    def changeWindowWithLoad(self):
+        self.txt = TextEditor(self.filename)
+        self.txt.show()
+    
