@@ -12,7 +12,7 @@ def main():
     window = MainWindow()
     window.show()
 
-    with open("style\dark\darktheme.qss", "r") as f:
+    with open("style/dark/darktheme.qss", "r") as f:
         _style = f.read()
         app.setStyleSheet(_style)
     

@@ -1,9 +1,9 @@
 from PySide6.QtWidgets import QMainWindow
 from PySide6.QtGui import QIcon, QStandardItemModel, QStandardItem
-import sys
-from ui.ui_textEditor import Ui_TextEditor
+from PySide6.QtCore import QAbstractItemModel
 from ui.ui_mainWindow import Ui_MainWindow
 from textEditor import TextEditor
+from app.main_func import loadControlFile
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -11,9 +11,32 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.pushButton.clicked.connect(self.changeWindow)
+        self.ui.pushButton.setText("Novo arquivo")
+        self.ui.pushButton_2.setText("Carregar arquivo")
+        self.model = QStandardItemModel()
+        self.ui.listView.setModel(self.model)
+
+
+        
+        self.listviewAddElement()
 
     def changeWindow(self):
         self.txt = TextEditor(None)
         self.txt.show()
 
 
+    ##Add text to List.
+    def listviewAddElement(self):
+        #self.model = QAbstractItemModel()
+        #self.model.insertColumn()
+        try:    
+            l_str = loadControlFile()
+
+        except:
+            with open('/home/davi-coelho/Documentos/Repos/2DpsNotes'+"/"+'scontrol.2dps', 'a', encoding='utf-8') as f:
+                f.write(None)
+
+
+        for i in l_str:
+            self.item = QStandardItem(i)
+            self.model.appendRow(self.item)

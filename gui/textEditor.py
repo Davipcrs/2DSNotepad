@@ -14,7 +14,11 @@ class TextEditor(QMainWindow):
         self.saveAsDialog = SaveAsDialog()
         self.arqname = None
         self.prevName = path
-        self.str = loadFile(self.prevName)
+        self.str = None
+        if self.prevName != None:
+            self.str = loadFile(self.prevName)
+        else:
+            pass
         self.ui.mainEditor.setPlainText(self.str)
         self.ui.actionSave.triggered.connect(self.f_getTextFromEditor)
 
