@@ -10,18 +10,14 @@ from saveAs import SaveAsDialog
     
 class TextEditor(QMainWindow):
     wClosed = Signal(bool)
-    def __init__(self, path):
+    def __init__(self):
         super(TextEditor, self).__init__()
         self.ui = Ui_TextEditor()
         self.ui.setupUi(self)
         self.saveAsDialog = SaveAsDialog()
         self.arqname = None
-        self.prevName = path
+        self.prevName = None
         self.str = None
-        if self.prevName != None:
-            self.str = loadFile(self.prevName)
-        else:
-            pass
         self.ui.mainEditor.setPlainText(self.str)
         self.ui.actionSave.triggered.connect(self.f_getTextFromEditor)
         self.ui.actionSaveAs.triggered.connect(self.f_ActionSaveAs)
@@ -41,9 +37,15 @@ class TextEditor(QMainWindow):
         self.arqname = self.saveAsDialog.ui.lineEdit.text()
         self.saveAsDialog.close()
         self.str = self.ui.mainEditor.toPlainText()
+        self.prevName = self.arqname
         Saving(self.arqname, self.str)
 
-    
+    def passFileName(self, prevname):
+        self.prevName = prevname
+        if self.prevName != None:
+            self.str = loadFile(self.prevName)
+        else:
+            pass    
 
     def closeEvent(self, event):
         reply = QMessageBox.question(self, 'Fechar Janela', 'Tem certeza que vai fechar a janela? Progresso pode ser perdido', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)

@@ -20,14 +20,14 @@ class MainWindow(QMainWindow):
         self.selectionList = self.ui.listView.selectionModel()
         self.selectionList.selectionChanged.connect(self.getFileNameWithClick)
         self.listviewAddElement()
+        self.txt = TextEditor()
+        self.txt.wClosed.connect(self.refreshlist)
+        self.txt.wClosed.connect(self.txt.ui.mainEditor.clear)
+
 
     def changeWindow(self):
-        self.txt = TextEditor(None)
-        #self.refreshlist()
-        self.txt.wClosed.connect(print('a'))
-        self.txt.show()
-        
-    
+        self.txt.passFileName(None)
+        self.txt.show()   
 
 
     ##Add text to List.
@@ -46,6 +46,12 @@ class MainWindow(QMainWindow):
             pass
 
     def refreshlist(self):
+        self.model.removeRows(0, self.model.rowCount())
+        self.listviewAddElement()
+
+        '''
+        print(loadControlDir().__sizeof__())
+        print(self.l_str.__sizeof__())
         if self.l_str.__sizeof__() != loadControlDir().__sizeof__():
             auxint = self.l_str.__sizeof__()
             self.l_str = loadControlDir()
@@ -53,7 +59,7 @@ class MainWindow(QMainWindow):
                 self.item = QStandardItem(self.l_str[auxint])
                 self.model.appendRow(self.item)
                 auxint = auxint+1
-
+        '''
     
 
 
@@ -63,6 +69,6 @@ class MainWindow(QMainWindow):
         
 
     def changeWindowWithLoad(self):
-        self.txt = TextEditor(self.filename)
+        self.txt.passFileName(self.filename)
         self.txt.show()
     
