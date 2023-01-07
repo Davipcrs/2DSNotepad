@@ -20,12 +20,13 @@ class MainWindow(QMainWindow):
         self.selectionList = self.ui.listView.selectionModel()
         self.selectionList.selectionChanged.connect(self.getFileNameWithClick)
         self.listviewAddElement()
-                
 
     def changeWindow(self):
         self.txt = TextEditor(None)
-        self.txt.wClosed.connect(self.refreshlist)
+        #self.refreshlist()
+        self.txt.wClosed.connect(print('a'))
         self.txt.show()
+        
     
 
 
@@ -48,7 +49,7 @@ class MainWindow(QMainWindow):
         if self.l_str.__sizeof__() != loadControlDir().__sizeof__():
             auxint = self.l_str.__sizeof__()
             self.l_str = loadControlDir()
-            while auxint < self.l_str.__sizeof__:
+            while auxint < self.l_str.__sizeof__():
                 self.item = QStandardItem(self.l_str[auxint])
                 self.model.appendRow(self.item)
                 auxint = auxint+1

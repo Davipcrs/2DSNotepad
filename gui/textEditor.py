@@ -1,9 +1,10 @@
 from PySide6.QtWidgets import QMainWindow, QMessageBox
-from PySide6.QtGui import QIcon, QStandardItemModel, QStandardItem
+from PySide6.QtGui import QIcon, QStandardItemModel, QStandardItem, QCloseEvent
 from PySide6.QtCore import Signal
 from ui.ui_textEditor import Ui_TextEditor
 from app.main_func import Saving, loadFile
 from saveAs import SaveAsDialog
+
 
 
     
@@ -26,8 +27,11 @@ class TextEditor(QMainWindow):
         self.ui.actionSaveAs.triggered.connect(self.f_ActionSaveAs)
 
     def f_getTextFromEditor(self):
-        self.str = self.ui.mainEditor.toPlainText()
-        Saving(self.prevName, self.str)
+        if self.prevName == None:
+            self.f_ActionSaveAs()
+        else:
+            self.str = self.ui.mainEditor.toPlainText()
+            Saving(self.prevName, self.str)
 
     def f_ActionSaveAs(self):
         self.saveAsDialog.show()
@@ -39,12 +43,17 @@ class TextEditor(QMainWindow):
         self.str = self.ui.mainEditor.toPlainText()
         Saving(self.arqname, self.str)
 
+    
+
     def closeEvent(self, event):
         reply = QMessageBox.question(self, 'Fechar Janela', 'Tem certeza que vai fechar a janela? Progresso pode ser perdido', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 
         if reply == QMessageBox.Yes:
             event.accept()
-            self.wClosed.emit(True)
+            self.wClosed.emit(event.isAccepted)
+
+            #https://doc.qt.io/qtforpython/tutorials/basictutorial/signals_and_slots.html
+            
         else:
 	        event.ignore()
         
