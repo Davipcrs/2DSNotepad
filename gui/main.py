@@ -5,9 +5,12 @@ sys.path.insert(0, path)
 
 from PySide6.QtWidgets import QApplication
 from mainwindow import MainWindow
+from app.main_func import mkdir
 
 def main():
     app = QApplication(sys.argv)
+
+    mkdir()
 
     window = MainWindow()
     window.show()

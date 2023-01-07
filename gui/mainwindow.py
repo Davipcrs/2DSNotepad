@@ -3,7 +3,7 @@ from PySide6.QtGui import QIcon, QStandardItemModel, QStandardItem
 from PySide6.QtCore import QAbstractItemModel
 from ui.ui_mainWindow import Ui_MainWindow
 from textEditor import TextEditor
-from app.main_func import loadControlFile
+from app.main_func import loadControlDir
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -17,13 +17,14 @@ class MainWindow(QMainWindow):
         self.model = QStandardItemModel()
         self.ui.listView.setModel(self.model)
         self.filename = None
-
         self.selectionList = self.ui.listView.selectionModel()
         self.selectionList.selectionChanged.connect(self.getFileNameWithClick)
         self.listviewAddElement()
+                
 
     def changeWindow(self):
         self.txt = TextEditor(None)
+        self.txt.wClosed.connect(self.refreshlist)
         self.txt.show()
     
 
@@ -32,20 +33,28 @@ class MainWindow(QMainWindow):
     def listviewAddElement(self):
         #self.model = QAbstractItemModel()
         #self.model.insertColumn()
-        try:    
-            l_str = loadControlFile()
+           
+        self.l_str = loadControlDir()
 
-        except:
-            with open('/home/davi-coelho/Documentos/Repos/2DpsNotes'+"/"+'scontrol.2dps', 'a', encoding='utf-8') as f:
-                f.write('')
-                l_str = None
-
-        if l_str != None:
-            for i in l_str:
+        
+        if self.l_str != None:
+            for i in self.l_str:
                 self.item = QStandardItem(i)
                 self.model.appendRow(self.item)
         else:
             pass
+
+    def refreshlist(self):
+        if self.l_str.__sizeof__() != loadControlDir().__sizeof__():
+            auxint = self.l_str.__sizeof__()
+            self.l_str = loadControlDir()
+            while auxint < self.l_str.__sizeof__:
+                self.item = QStandardItem(self.l_str[auxint])
+                self.model.appendRow(self.item)
+                auxint = auxint+1
+
+    
+
 
     def getFileNameWithClick(self):
         aux_str = self.selectionList.selection().indexes()[0]
