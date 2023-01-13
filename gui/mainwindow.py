@@ -3,7 +3,7 @@ from PySide6.QtGui import QIcon, QStandardItemModel, QStandardItem
 from PySide6.QtCore import QAbstractItemModel
 from ui.ui_mainWindow import Ui_MainWindow
 from textEditor import TextEditor
-from app.main_func import loadControlDir
+from app.main_func import loadControlDir, loadFile
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -29,6 +29,7 @@ class MainWindow(QMainWindow):
         self.txt.ui.actionNew.triggered.connect(self.createNewTextEditor)
         self.ui.label.setText("Quantidade de arquivos: " + str(self.model.rowCount()))
         self.ui.label_2.setText("")
+        
         
 
     def changeWindow(self):
@@ -80,7 +81,7 @@ class MainWindow(QMainWindow):
     def getFileNameWithClick(self):
         aux_str = self.selectionList.selection().indexes()[0]
         self.filename = aux_str.data()
-        
+        self.ui.textBrowser.setText(loadFile(self.filename))
 
     def createNewTextEditor(self):
         txt = TextEditor()

@@ -4,7 +4,7 @@ p = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 
-def Saving(path, string):
+def saving(path, string):
     if platform.system == "Windows":
         with open('text\\'+path, 'w', encoding='utf-8') as f:
             f.write(string)

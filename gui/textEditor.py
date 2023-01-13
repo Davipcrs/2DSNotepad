@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QMainWindow, QMessageBox
 from PySide6.QtGui import QIcon, QStandardItemModel, QStandardItem, QCloseEvent
 from PySide6.QtCore import Signal
 from ui.ui_textEditor import Ui_TextEditor
-from app.main_func import Saving, loadFile
+from app.main_func import saving, loadFile
 from saveAs import SaveAsDialog
 
 
@@ -33,7 +33,7 @@ class TextEditor(QMainWindow):
             self.f_ActionSaveAs()
         else:
             self.str = self.ui.mainEditor.toPlainText()
-            Saving(self.prevName, self.str)
+            saving(self.prevName, self.str)
 
     def f_ActionSaveAs(self):
         self.saveAsDialog.show()
@@ -45,7 +45,7 @@ class TextEditor(QMainWindow):
         self.saveAsDialog.close()
         self.str = self.ui.mainEditor.toPlainText()
         self.prevName = self.arqname
-        Saving(self.arqname, self.str)
+        saving(self.arqname, self.str)
 
     def passFileName(self, name):
         print(name)
@@ -57,13 +57,13 @@ class TextEditor(QMainWindow):
             pass    
 
     def closeEvent(self, event):
+        self.saveAsDialog = SaveAsDialog()
         
         if  self.prevName == None or self.ui.mainEditor.toPlainText() != loadFile(self.prevName):
             reply = QMessageBox.question(self, 'Fechar Janela', 'Tem certeza que vai fechar a janela? Existem modificações não salvas.', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
             if reply == QMessageBox.Yes:
                 event.accept()
                 self.wClosed.emit(event.isAccepted)
-                #https://doc.qt.io/qtforpython/tutorials/basictutorial/signals_and_slots.html
             else:
                 event.ignore()
 
