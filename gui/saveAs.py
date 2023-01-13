@@ -6,3 +6,5 @@ class SaveAsDialog(QDialog):
         super(SaveAsDialog, self).__init__()
         self.ui = Ui_SaveAsDialog()
         self.ui.setupUi(self)
+        self.ui.CancelpushButton.setText("Cancelar")
+        self.ui.ConfirmpushButton.setText("Confirmar")

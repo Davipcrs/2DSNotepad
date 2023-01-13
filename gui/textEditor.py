@@ -18,7 +18,6 @@ class TextEditor(QMainWindow):
         self.arqname = None
         self.prevName = None
         self.str = None
-        self.ui.mainEditor.setPlainText(self.str)
         self.ui.actionSave.triggered.connect(self.f_getTextFromEditor)
         self.ui.actionSaveAs.triggered.connect(self.f_ActionSaveAs)
 
@@ -31,7 +30,8 @@ class TextEditor(QMainWindow):
 
     def f_ActionSaveAs(self):
         self.saveAsDialog.show()
-        self.saveAsDialog.ui.ConfirmpushButton.clicked.connect(self.f_getFileName)    
+        self.saveAsDialog.ui.ConfirmpushButton.clicked.connect(self.f_getFileName)
+        self.saveAsDialog.ui.CancelpushButton.clicked.connect(self.saveAsDialog.close)
 
     def f_getFileName(self):
         self.arqname = self.saveAsDialog.ui.lineEdit.text()
@@ -40,20 +40,27 @@ class TextEditor(QMainWindow):
         self.prevName = self.arqname
         Saving(self.arqname, self.str)
 
-    def passFileName(self, prevname):
-        self.prevName = prevname
+    def passFileName(self, name):
+        print(name)
+        self.prevName = name
         if self.prevName != None:
             self.str = loadFile(self.prevName)
+            self.ui.mainEditor.setPlainText(self.str)
         else:
             pass    
 
     def closeEvent(self, event):
-        reply = QMessageBox.question(self, 'Fechar Janela', 'Tem certeza que vai fechar a janela? Progresso pode ser perdido', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        
+        if  self.prevName == None or self.ui.mainEditor.toPlainText() != loadFile(self.prevName):
+            reply = QMessageBox.question(self, 'Fechar Janela', 'Tem certeza que vai fechar a janela? Existem modificações não salvas.', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+        else:
+            event.accept()
+            self.wClosed.emit(event.isAccepted)
 
         if reply == QMessageBox.Yes:
             event.accept()
             self.wClosed.emit(event.isAccepted)
-
             #https://doc.qt.io/qtforpython/tutorials/basictutorial/signals_and_slots.html
             
         else:

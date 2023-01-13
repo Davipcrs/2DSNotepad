@@ -25,6 +25,7 @@ class MainWindow(QMainWindow):
         self.txt.wClosed.connect(self.txt.ui.mainEditor.clear)
         self.txt.wClosed.connect(self.show)
         self.ui.label.setText("Quantidade de arquivos: " + str(self.model.rowCount()))
+        self.ui.label_2.setText("")
 
     def changeWindow(self):
         self.txt.passFileName(None)
