@@ -21,7 +21,7 @@ def main():
             app.setStyleSheet(_style)
 
     except:
-        with open("theme\darktheme.qss") as f:
+        with open("themes\darktheme.qss") as f:
             _style = f.read()
             app.setStyleSheet(_style)  
 
@@ -33,4 +33,4 @@ if __name__ == "__main__":
     main()
 
 
-##pyinstaller --windowed .\gui\main.py --paths C:\Users\davip\Documents\Projetos\2DpsNotes --add-data 'C:\Users\davip\Documents\Projetos\2DpsNotes\style\dark\darktheme.qss;theme --add-data 'C:\Users\davip\Documents\Projetos\2DpsNotes\LICENSE;license''
+##pyinstaller --windowed .\gui\main.py --paths C:\Users\davip\Documents\Projetos\2DpsNotes --add-data 'C:\Users\davip\Documents\Projetos\2DpsNotes\style\dark\darktheme.qss;themes' --add-data 'C:\Users\davip\Documents\Projetos\2DpsNotes\LICENSE;license'
