@@ -20,6 +20,13 @@ class TextEditor(QMainWindow):
         self.str = None
         self.ui.actionSave.triggered.connect(self.f_getTextFromEditor)
         self.ui.actionSaveAs.triggered.connect(self.f_ActionSaveAs)
+        self.ui.actionReturn.setText("Desfazer")
+        self.ui.actionRFoward.setText("Refazer")
+        self.ui.actionReturn.triggered.connect(self.ui.mainEditor.undo)
+        self.ui.actionRFoward.triggered.connect(self.ui.mainEditor.redo)
+        self.ui.actionClear.triggered.connect(self.ui.mainEditor.clear)
+        self.ui.actionClose.triggered.connect(self.closeEvent)
+        
 
     def f_getTextFromEditor(self):
         if self.prevName == None:

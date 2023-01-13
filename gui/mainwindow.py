@@ -20,12 +20,16 @@ class MainWindow(QMainWindow):
         self.selectionList = self.ui.listView.selectionModel()
         self.selectionList.selectionChanged.connect(self.getFileNameWithClick)
         self.listviewAddElement()
+        self.arr = []
+        ##TextEditor Events
         self.txt = TextEditor()
         self.txt.wClosed.connect(self.refreshWindow)
         self.txt.wClosed.connect(self.txt.ui.mainEditor.clear)
         self.txt.wClosed.connect(self.show)
+        self.txt.ui.actionNew.triggered.connect(self.createNewTextEditor)
         self.ui.label.setText("Quantidade de arquivos: " + str(self.model.rowCount()))
         self.ui.label_2.setText("")
+        
 
     def changeWindow(self):
         self.txt.passFileName(None)
@@ -78,4 +82,8 @@ class MainWindow(QMainWindow):
         self.filename = aux_str.data()
         
 
+    def createNewTextEditor(self):
+        txt = TextEditor()
+        self.arr.append(txt)
+        self.arr[self.arr.__len__()-1].show()
  
