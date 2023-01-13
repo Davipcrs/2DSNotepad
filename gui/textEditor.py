@@ -60,16 +60,16 @@ class TextEditor(QMainWindow):
         
         if  self.prevName == None or self.ui.mainEditor.toPlainText() != loadFile(self.prevName):
             reply = QMessageBox.question(self, 'Fechar Janela', 'Tem certeza que vai fechar a janela? Existem modificações não salvas.', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                event.accept()
+                self.wClosed.emit(event.isAccepted)
+                #https://doc.qt.io/qtforpython/tutorials/basictutorial/signals_and_slots.html
+            else:
+                event.ignore()
 
         else:
             event.accept()
             self.wClosed.emit(event.isAccepted)
 
-        if reply == QMessageBox.Yes:
-            event.accept()
-            self.wClosed.emit(event.isAccepted)
-            #https://doc.qt.io/qtforpython/tutorials/basictutorial/signals_and_slots.html
             
-        else:
-	        event.ignore()
         
