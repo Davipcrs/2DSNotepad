@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QListView, QMainWindow, QMenuBar, QPushButton,
-    QSizePolicy, QStatusBar, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QListView,
+    QMainWindow, QMenuBar, QPushButton, QSizePolicy,
+    QStatusBar, QTextBrowser, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -26,14 +26,24 @@ class Ui_MainWindow(object):
         MainWindow.resize(800, 631)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.gridLayout = QGridLayout(self.centralwidget)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.verticalLayout_3 = QVBoxLayout()
+        self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.listView = QListView(self.centralwidget)
         self.listView.setObjectName(u"listView")
 
-        self.verticalLayout_3.addWidget(self.listView)
+        self.horizontalLayout_2.addWidget(self.listView)
+
+        self.textBrowser = QTextBrowser(self.centralwidget)
+        self.textBrowser.setObjectName(u"textBrowser")
+
+        self.horizontalLayout_2.addWidget(self.textBrowser)
+
+        self.horizontalLayout_2.setStretch(0, 3)
+        self.horizontalLayout_2.setStretch(1, 1)
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout_2)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -71,9 +81,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setStretch(1, 1)
 
         self.verticalLayout_3.addLayout(self.horizontalLayout)
-
-
-        self.gridLayout.addLayout(self.verticalLayout_3, 0, 0, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
