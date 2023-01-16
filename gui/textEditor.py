@@ -1,5 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QMessageBox
-from PySide6.QtGui import QIcon, QStandardItemModel, QStandardItem, QCloseEvent
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QLabel, QHBoxLayout
 from PySide6.QtCore import Signal
 from ui.ui_textEditor import Ui_TextEditor
 from app.main_func import saving, loadFile
@@ -18,6 +17,8 @@ class TextEditor(QMainWindow):
         self.arqname = None
         self.prevName = None
         self.str = None
+
+        #Actions
         self.ui.actionSave.triggered.connect(self.f_getTextFromEditor)
         self.ui.actionSaveAs.triggered.connect(self.f_ActionSaveAs)
         self.ui.actionReturn.setText("Desfazer")
@@ -26,7 +27,18 @@ class TextEditor(QMainWindow):
         self.ui.actionRFoward.triggered.connect(self.ui.mainEditor.redo)
         self.ui.actionClear.triggered.connect(self.ui.mainEditor.clear)
         self.ui.actionClose.triggered.connect(self.closeEvent)
-        
+
+        #StatusBar
+        self.currentLineNumLabel = QLabel()
+        self.totalLineNumLabel = QLabel()
+        self.totalNumCharLabel = QLabel()
+        self.ui.statusbar.addPermanentWidget(self.currentLineNumLabel)
+        self.ui.statusbar.addWidget(self.totalLineNumLabel)
+        self.ui.statusbar.addWidget(self.totalNumCharLabel)
+        self.ui.statusbar.show()
+
+        self.ui.mainEditor.textChanged.connect(self.updateTotalLine)
+        self.ui.mainEditor.textChanged.connect(self.updateTotalChar)
 
     def f_getTextFromEditor(self):
         if self.prevName == None:
@@ -71,5 +83,14 @@ class TextEditor(QMainWindow):
             event.accept()
             self.wClosed.emit(event.isAccepted)
 
+    def updateTotalLine(self):
+        self.totalLineNumLabel.setText("Total de Linhas: " + str(self.ui.mainEditor.toPlainText().count("\n") + 1))
+        
+    def updateTotalChar(self):
+        self.totalNumCharLabel.setText("Total de Caracteres: " + str(self.ui.mainEditor.toPlainText().__len__()))
+
+    def updateCurrentLine(self):
+
+        pass
             
         

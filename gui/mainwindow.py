@@ -29,6 +29,7 @@ class MainWindow(QMainWindow):
         self.txt.ui.actionNew.triggered.connect(self.createNewTextEditor)
         self.ui.label.setText("Quantidade de arquivos: " + str(self.model.rowCount()))
         self.ui.label_2.setText("")
+        self.setStatusBar(None)
         
         
 

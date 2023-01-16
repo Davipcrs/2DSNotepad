@@ -1,0 +1,6 @@
+QPlainTextEdit#mainEditor{
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 2px;
+}
+
