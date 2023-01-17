@@ -34,4 +34,4 @@ if __name__ == "__main__":
 
 
 ##using pyinstaller in windows to generate a .exe file.
-##pyinstaller --windowed .\gui\main.py --paths C:\Users\davip\Documents\Projetos\2DpsNotes --add-data 'C:\Users\davip\Documents\Projetos\2DpsNotes\style\dark\darktheme.qss;themes' --add-data 'C:\Users\davip\Documents\Projetos\2DpsNotes\LICENSE;license'
+##pyinstaller --windowed .\gui\main.py --paths C:\Users\davip\Documents\Projetos\2DpsNotes --add-data 'C:\Users\davip\Documents\Projetos\2DpsNotes\style\dark\darktheme.qss;themes' --add-data 'C:\Users\davip\Documents\Projetos\2DpsNotes\LICENSE;license' --name 2DSNotepad
