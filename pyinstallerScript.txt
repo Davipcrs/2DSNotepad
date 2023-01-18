@@ -1,2 +1,5 @@
 ##using pyinstaller in windows to generate a .exe file.
 ##pyinstaller --windowed .\gui\main.py --paths C:\Users\davip\Documents\Projetos\2DpsNotes --add-data 'C:\Users\davip\Documents\Projetos\2DpsNotes\style\dark\darktheme.qss;themes' --add-data 'C:\Users\davip\Documents\Projetos\2DpsNotes\LICENSE;license' --name 2DSNotepad
+
+##on Linux:
+pyinstaller --windowed ./gui/main.py --paths /home/davi-coelho/Documentos/Repos/2DpsNotes --add-data '/home/davi-coelho/Documentos/Repos/2DpsNotes/style/dark/darktheme.qss:themes' --add-data '/home/davi-coelho/Documentos/Repos/2DpsNotes/LICENSE:license' --name 2DSNotepad

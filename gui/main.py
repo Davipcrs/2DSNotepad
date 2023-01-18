@@ -21,7 +21,7 @@ def main():
             app.setStyleSheet(_style)
 
     except:
-        with open("themes\darktheme.qss") as f:
+        with open("themes/darktheme.qss", "r") as f:
             _style = f.read()
             app.setStyleSheet(_style)  
 
