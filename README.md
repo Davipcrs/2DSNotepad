@@ -2,7 +2,7 @@
 Uma aplicação multiplataforma para fazer anotações e acessa-las de forma rápida.
 
 # Instalação
-  ##Windows:
+  ## Windows:
   No Windows (8 ou mais recente) basta baixar o executável que está na aba de "Releases" do github que será possível instalar, via interface gráfica, a aplicação.
   o local de instalação é: C:\Users\\"seu usuário"\AppData\Local\Programs\2DSNotepad
   
@@ -10,9 +10,9 @@ Uma aplicação multiplataforma para fazer anotações e acessa-las de forma rá
   ter o Python3 e a biblioteca PySide6 instalados no sistema. Dessa forma, pode-se criar o executável windows ou instalador com a sua ferramenta favorita.
   Para informações sobre criar um instalador usando o PyInstaller e o InnoSetup verifique o arquivo "bldsrc.txt"
   
-  ##Linux:
+  ## Linux:
   (Em breve)
-  ##MacOs:
+  ## MacOs:
   (Em breve)
 
  # Imagens
