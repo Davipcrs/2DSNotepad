@@ -17,7 +17,7 @@ Uma aplicação multiplataforma para fazer anotações e acessa-las de forma rá
 
  # Imagens
  
- ##Tela inicial do programa:
+ ## Tela inicial do programa:
  
  
  ![Captura de tela 2023-01-27 223439](https://user-images.githubusercontent.com/77358718/226072481-b10baf07-46ec-4d86-82cb-dd4b164446bd.jpg)
@@ -27,14 +27,14 @@ Uma aplicação multiplataforma para fazer anotações e acessa-las de forma rá
  
  
  
- ##Editor de Texto
+ ## Editor de Texto:
  
  
  ![Captura de tela 2023-01-27 223539](https://user-images.githubusercontent.com/77358718/226072545-bc2002a8-ae3f-45b5-a210-6fa89c6553b3.jpg)
  
  
  
- ##Menu bar (e itens)
+ ## Menu bar (e itens):
  
  
  ![Captura de tela 2023-01-27 223552](https://user-images.githubusercontent.com/77358718/226072555-6dbf5cc0-d1b2-4876-996e-3b123ad37ed7.jpg)
