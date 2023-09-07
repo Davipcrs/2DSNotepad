@@ -1,4 +1,4 @@
-from ui.ui_saveAsDialog import Ui_SaveAsDialog
+from view.ui.ui_saveAsDialog import Ui_SaveAsDialog
 from PySide6.QtWidgets import QDialog
 
 class SaveAsDialog(QDialog):

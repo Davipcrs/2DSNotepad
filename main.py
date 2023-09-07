@@ -1,11 +1,7 @@
-import sys
-import os
-path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, path)
-
 from PySide6.QtWidgets import QApplication
-from mainwindow import MainWindow
-from app.main_func import mkdir
+from view.mainwindow import MainWindow
+from controller.main_func import mkdir
+import sys
 
 def main():
     app = QApplication(sys.argv)

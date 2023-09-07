@@ -1,9 +1,9 @@
 from PySide6.QtWidgets import QMainWindow
 from PySide6.QtGui import QIcon, QStandardItemModel, QStandardItem
 from PySide6.QtCore import QAbstractItemModel
-from ui.ui_mainWindow import Ui_MainWindow
-from textEditor import TextEditor
-from app.main_func import loadControlDir, loadFile
+from view.ui.ui_mainWindow import Ui_MainWindow
+from view.textEditor import TextEditor
+from controller.main_func import loadControlDir, loadFile
 
 class MainWindow(QMainWindow):
     def __init__(self):

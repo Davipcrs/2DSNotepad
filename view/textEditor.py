@@ -1,8 +1,8 @@
 from PySide6.QtWidgets import QMainWindow, QMessageBox, QLabel, QHBoxLayout
 from PySide6.QtCore import Signal
-from ui.ui_textEditor import Ui_TextEditor
-from app.main_func import saving, loadFile
-from saveAs import SaveAsDialog
+from view.ui.ui_textEditor import Ui_TextEditor
+from controller.main_func import saving, loadFile
+from view.saveAs import SaveAsDialog
 
 
 
@@ -57,6 +57,7 @@ class TextEditor(QMainWindow):
         self.saveAsDialog.close()
         self.str = self.ui.mainEditor.toPlainText()
         self.prevName = self.arqname
+        print(self.prevName)
         saving(self.arqname, self.str)
 
     def passFileName(self, name):
